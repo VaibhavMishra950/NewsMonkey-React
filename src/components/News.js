@@ -11,22 +11,20 @@ const News = (props) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
-  
+
   const updateNews = async () => {
     props.setProgress(30);
     let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
-    // setLoading(true);
     let response = await fetch(url);
     props.setProgress(50);
     let data = await response.json();
     props.setProgress(80);
     setArticles(data.articles);
     setTotalResults(data.totalResults);
-    // setPage(2);
     setLoading(false);
     props.setProgress(100);
   }
-  
+
   useEffect(() => {
     document.title = `NewsMonkey - ${props.category} Headlines`;
     updateNews()
@@ -35,7 +33,7 @@ const News = (props) => {
 
 
   const fetchMoreData = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page+1}&pageSize=${props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
     setPage(page + 1);
     let response = await fetch(url);
     let data = await response.json();
@@ -43,9 +41,10 @@ const News = (props) => {
     setTotalResults(data.totalResults);
   };
 
+  
   return (
     <>
-      <h1 className='text-center my-3 py-3'>NewsMonkey - Top {props.category} Headlines</h1>
+      <h1 id='topHeading' className='text-center my-3 py-3'>NewsMonkey - Top {props.category} Headlines</h1>
       {loading && <Loader />}
       <InfiniteScroll
         dataLength={articles.length}
@@ -67,8 +66,7 @@ const News = (props) => {
         </div>
 
       </InfiniteScroll>
-      
-      
+
     </>
   )
 }
