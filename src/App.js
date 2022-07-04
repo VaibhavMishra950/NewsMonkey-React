@@ -17,10 +17,10 @@ const App = () => {
   // const apiKey = "4ee921aa3bf34fbe98b143da93872e3e"
 
   // CodeWithHarry API Key
-  // const apiKey = "dbe57b028aeb41e285a226a94865f7a7"
+  const apiKey = "dbe57b028aeb41e285a226a94865f7a7"
 
   // Original API Key
-  const apiKey = process.env.REACT_APP_NEWS_API;
+  // const apiKey = process.env.REACT_APP_NEWS_API;
 
 
   const [progress, setProgress] = useState(0)
